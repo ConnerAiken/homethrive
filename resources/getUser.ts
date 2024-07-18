@@ -1,7 +1,12 @@
-module.exports = async (event, dynamoDbClient) => {
+import { ResourceHandlerParams } from '../handler.types';
+
+const getUser: ResourceHandlerParams = async (event, dynamoDbClient) => {
     // Validate the params
     try {
-        if (!event.pathParameters.id || event.pathParameters.id.length === 0) {
+        if (
+            !event?.pathParameters?.id ||
+            event?.pathParameters?.id.length === 0
+        ) {
             throw new Error('Missing or invalid id');
         }
     } catch (error) {
@@ -57,3 +62,5 @@ module.exports = async (event, dynamoDbClient) => {
         };
     }
 };
+
+module.exports = getUser;

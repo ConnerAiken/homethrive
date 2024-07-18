@@ -1,17 +1,16 @@
-interface UpdatePatientPayload {
-    id: string;
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    dob?: string;
-}
+import { ResourceHandlerParams } from '../handler.types';
+import { UpdateUserPayload } from './updateUser.types';
 
-module.exports = async (event, dynamoDbClient, dayjs) => {
-    let body: UpdatePatientPayload;
+const updateUser: ResourceHandlerParams = async (
+    event,
+    dynamoDbClient,
+    dayjs
+) => {
+    let body: UpdateUserPayload;
 
     // Parse the body
     try {
-        body = JSON.parse(event.body);
+        body = JSON.parse(event.body ?? '{}');
 
         ['firstName', 'lastName', 'email', 'dob', 'id'].forEach(
             (key: string) => {
@@ -50,7 +49,9 @@ module.exports = async (event, dynamoDbClient, dayjs) => {
             },
             UpdateExpression:
                 'set email = :email, firstName = :firstName, lastName = :lastName, dob = :dob',
+            ConditionExpression: 'id = :id',
             ExpressionAttributeValues: {
+                ':id': body.id,
                 ':email': body.email,
                 ':firstName': body.firstName,
                 ':lastName': body.lastName,
@@ -60,17 +61,6 @@ module.exports = async (event, dynamoDbClient, dayjs) => {
         };
 
         const dbResponse = await dynamoDbClient.update(dbPayload).promise();
-
-        if (!dbResponse?.Attributes?.id) {
-            return {
-                statusCode: 404,
-                body: JSON.stringify({
-                    message: 'Could not find a user with the provided id',
-                    error: true,
-                    payload: {},
-                }),
-            };
-        }
 
         return {
             statusCode: 200,
@@ -83,6 +73,17 @@ module.exports = async (event, dynamoDbClient, dayjs) => {
     } catch (error) {
         console.log(error);
 
+        if (error?.code === 'ConditionalCheckFailedException') {
+            return {
+                statusCode: 404,
+                body: JSON.stringify({
+                    message: 'Could not find a user with the provided id',
+                    error: true,
+                    payload: {},
+                }),
+            };
+        }
+
         return {
             statusCode: 500,
             body: JSON.stringify({
@@ -93,3 +94,5 @@ module.exports = async (event, dynamoDbClient, dayjs) => {
         };
     }
 };
+
+module.exports = updateUser;

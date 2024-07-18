@@ -1,13 +1,12 @@
-interface DeletePatientPayload {
-    id: string;
-}
+import { ResourceHandlerParams } from '../handler.types';
+import { DeleteUserPayload } from './deleteUser.types';
 
-module.exports = async (event, dynamoDbClient) => {
-    let body: DeletePatientPayload;
+const deleteUser: ResourceHandlerParams = async (event, dynamoDbClient) => {
+    let body: DeleteUserPayload;
 
     // Parse the body
     try {
-        body = JSON.parse(event.body);
+        body = JSON.parse(event.body ?? '{}');
 
         // Validate the body
         if (!body.id || typeof body.id !== 'string' || body.id.length === 0) {
@@ -70,3 +69,5 @@ module.exports = async (event, dynamoDbClient) => {
         };
     }
 };
+
+module.exports = deleteUser;

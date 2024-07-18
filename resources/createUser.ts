@@ -1,17 +1,17 @@
-interface CreatePatientPayload {
-    id?: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    dob: string;
-}
+import { ResourceHandlerParams } from '../handler.types';
+import { CreateUserPayload } from './createUser.types';
 
-module.exports = async (event, dynamoDbClient, dayjs, uuidv4) => {
-    let body: CreatePatientPayload;
+const createUser: ResourceHandlerParams = async (
+    event,
+    dynamoDbClient,
+    dayjs,
+    uuidv4
+) => {
+    let body: CreateUserPayload;
 
     // Parse the body
     try {
-        body = JSON.parse(event.body);
+        body = JSON.parse(event.body ?? '{}');
 
         // Validate the body
         ['firstName', 'lastName', 'email', 'dob'].forEach((key: string) => {
@@ -73,3 +73,5 @@ module.exports = async (event, dynamoDbClient, dayjs, uuidv4) => {
         };
     }
 };
+
+module.exports = createUser;

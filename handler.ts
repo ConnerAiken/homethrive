@@ -1,8 +1,10 @@
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import { CrudRequestMap } from './handler.types';
 const AWS = require('aws-sdk');
 const uuid = require('uuid');
 const dayjs = require('dayjs');
 
-const crudRequestMap = {
+const crudRequestMap: CrudRequestMap = {
     GET: {
         '/users/{id}': require('./resources/getUser'),
     },
@@ -17,7 +19,9 @@ const crudRequestMap = {
     },
 };
 
-module.exports.process = async (event) => {
+export const process = async (
+    event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> => {
     try {
         const crudFunc = crudRequestMap?.[event.httpMethod]?.[event.resource];
 
@@ -30,11 +34,11 @@ module.exports.process = async (event) => {
             );
             return {
                 statusCode: 501,
-                body: {
+                body: JSON.stringify({
                     message: 'An error occured',
                     payload: {},
                     error: 'This request method or resource has not been implemented',
-                },
+                }),
             };
         }
 
@@ -49,11 +53,11 @@ module.exports.process = async (event) => {
 
         return {
             statusCode: 500,
-            body: {
+            body: JSON.stringify({
                 message: 'An error occured',
                 payload: {},
                 error: 'An unknown error occured in the handler',
-            },
+            }),
         };
     }
 };
