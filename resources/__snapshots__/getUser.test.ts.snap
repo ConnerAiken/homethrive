@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Get user actions GET->/users/{id} We are able to get a user using the GET endpoint 1`] = `undefined`;
+
+exports[`Get user actions GET->/users/{id} We handle generic errors properly 1`] = `"{"message":"An error occured","payload":{},"error":{}}"`;
+
+exports[`Get user actions GET->/users/{id} We send the proper server status code when there is missing information 1`] = `"{"error":"Invalid path parameter"}"`;
+
+exports[`Get user actions GET->/users/{id} We send the proper server status code when there is no record 1`] = `"{"message":"Could not find a user with the provided id","error":true,"payload":{}}"`;

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Update user actions PUT->/users/ We are able to update a user using the PUT endpoint 1`] = `
+{
+  "error": false,
+  "message": "Successfully updated the user",
+  "payload": {
+    "dob": "06/02/1993",
+    "email": "conner@fittedtech.com",
+    "firstName": "Conner",
+    "id": "123",
+    "lastName": "Aiken",
+  },
+}
+`;
+
+exports[`Update user actions PUT->/users/ We handle generic errors properly 1`] = `"{"message":"An error occured","payload":{},"error":{}}"`;
+
+exports[`Update user actions PUT->/users/ We send the proper server status code when there is no relevant user 1`] = `
+{
+  "error": true,
+  "message": "Could not find a user with the provided id",
+  "payload": {},
+}
+`;

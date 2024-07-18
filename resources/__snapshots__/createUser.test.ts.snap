@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create user actions POST->/users/ We are able to create a user using the POST endpoint 1`] = `
+{
+  "error": false,
+  "message": "Successfully created the user",
+  "payload": {
+    "dob": "06/02/1993",
+    "email": "conner@fittedtech.com",
+    "firstName": "Conner",
+    "id": "123",
+    "lastName": "Aiken",
+  },
+}
+`;
+
+exports[`Create user actions POST->/users/ We can detect invalid date formats 1`] = `
+{
+  "error": "Invalid JSON body",
+  "message": "An error occured",
+  "payload": {},
+}
+`;
+
+exports[`Create user actions POST->/users/ We handle generic errors properly 1`] = `"{"error":{},"message":"An error occured","payload":{}}"`;

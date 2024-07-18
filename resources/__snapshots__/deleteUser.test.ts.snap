@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Delete user actions DELETE->/users/ We are able to delete a user using the DELETE endpoint 1`] = `
+{
+  "error": false,
+  "message": "Successfully deleted",
+  "payload": {
+    "email": "conner@fittedtech.com",
+    "firstName": "Conner",
+    "id": "1",
+    "lastName": "Aiken",
+  },
+}
+`;
+
+exports[`Delete user actions DELETE->/users/ We are able to get a user using the GET endpoint 1`] = `
+{
+  "error": false,
+  "message": "Successfully deleted",
+  "payload": {
+    "email": "conner@fittedtech.com",
+    "firstName": "Conner",
+    "id": "1",
+    "lastName": "Aiken",
+  },
+}
+`;
+
+exports[`Delete user actions DELETE->/users/ We handle generic errors properly 1`] = `"{"error":{},"message":"An error occured","payload":{}}"`;
+
+exports[`Delete user actions DELETE->/users/ We send the proper server status code when we cannot find the record to delete 1`] = `"{"message":"Could not find the relevant user to delete","error":true,"payload":{}}"`;
