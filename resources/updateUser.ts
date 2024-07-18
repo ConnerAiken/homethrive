@@ -51,6 +51,7 @@ module.exports = async (event, dynamoDbClient, dayjs) => {
             UpdateExpression:
                 'set email = :email, firstName = :firstName, lastName = :lastName, dob = :dob',
             ExpressionAttributeValues: {
+                ':id': body.id,
                 ':email': body.email,
                 ':firstName': body.firstName,
                 ':lastName': body.lastName,
@@ -61,7 +62,7 @@ module.exports = async (event, dynamoDbClient, dayjs) => {
 
         const dbResponse = await dynamoDbClient.update(dbPayload).promise();
 
-        if (!dbResponse?.Attributes?.id) {
+        if (!dbResponse?.Attributes.email) {
             return {
                 statusCode: 404,
                 body: JSON.stringify({

@@ -32,6 +32,8 @@ This service also includes unit tests, which can be ran with: `npm test` once `n
 
 ### Deployment
 
+Prior to deploying, you may need to adjust the `serverless.yml` organization name.
+
 In order to deploy the example, you need to run the following command:
 
 ```

@@ -40,7 +40,7 @@ functions:
             - http:
                   path: users
                   method: put
-            # Would probably use request scheme validators too: https://www.serverless.com/framework/docs/providers/aws/events/apigateway#request-schema-validators
+
 resources:
     Resources:
         Users:
