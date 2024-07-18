@@ -1,0 +1,24 @@
+{
+    "name": "homethrive-interview",
+    "version": "1.0.0",
+    "description": "Interview challenge",
+    "author": "Conner Aiken",
+    "license": "MIT",
+    "scripts": {
+        "test": "jest"
+    },
+    "dependencies": {
+        "dayjs": "^1.11.12",
+        "uuid": "^10.0.0",
+        "yarn": "^1.22.0",
+        "aws-sdk": "^2.1659.0"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.141",
+        "@types/jest": "^29.5.12",
+        "jest": "^29.7.0",
+        "serverless-dynamodb-local": "^0.2.40",
+        "serverless-offline": "^13.6.0",
+        "ts-jest": "^29.2.2"
+    }
+}

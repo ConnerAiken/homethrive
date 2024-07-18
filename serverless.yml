@@ -1,0 +1,68 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: fittedtech
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: user-service
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: User
+
+provider:
+    name: aws
+    runtime: nodejs20.x
+    region: us-east-1
+    iamRoleStatements:
+        - Effect: Allow
+          Action:
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:DeleteItem
+              - dynamodb:UpdateItem
+          Resource: '*'
+
+functions:
+    handleUser:
+        handler: handler.process
+        events:
+            - http:
+                  path: users/{id}
+                  method: get
+                  request:
+                      parameters:
+                          paths:
+                              id: true
+            - http:
+                  path: users
+                  method: post
+            - http:
+                  path: users
+                  method: delete
+            - http:
+                  path: users
+                  method: put
+            # Would probably use request scheme validators too: https://www.serverless.com/framework/docs/providers/aws/events/apigateway#request-schema-validators
+resources:
+    Resources:
+        Users:
+            Type: AWS::DynamoDB::Table
+            Properties:
+                TableName: Users
+                AttributeDefinitions:
+                    - AttributeName: id
+                      AttributeType: S
+                KeySchema:
+                    - AttributeName: id
+                      KeyType: HASH
+                ProvisionedThroughput:
+                    ReadCapacityUnits: 1
+                    WriteCapacityUnits: 1
+
+plugins:
+    - serverless-dynamodb-local
+    - serverless-offline
+
+build:
+    esbuild:
+        sourcemap:
+            type: linked
+            setNodeOptions: true
