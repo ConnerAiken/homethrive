@@ -1,0 +1,125 @@
+{
+    "info": {
+        "_postman_id": "e9acda00-b0c3-4e49-bf0a-656be1899ff1",
+        "name": "Homethrive",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "1309591"
+    },
+    "item": [
+        {
+            "name": "Get User",
+            "request": {
+                "method": "GET",
+                "header": []
+            },
+            "response": []
+        },
+        {
+            "name": "Create User",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"firstName\": \"Conner\",\n    \"lastName\": \"Aiken\",\n    \"dob\": \"06/02/1993\",\n    \"email\": \"conner@fittedtech.com\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://qkugf08cwb.execute-api.us-east-1.amazonaws.com/dev/users/",
+                    "protocol": "https",
+                    "host": [
+                        "qkugf08cwb",
+                        "execute-api",
+                        "us-east-1",
+                        "amazonaws",
+                        "com"
+                    ],
+                    "path": ["dev", "users", ""]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Irrelevant",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://qkugf08cwb.execute-api.us-east-1.amazonaws.com/dev/test",
+                    "protocol": "https",
+                    "host": [
+                        "qkugf08cwb",
+                        "execute-api",
+                        "us-east-1",
+                        "amazonaws",
+                        "com"
+                    ],
+                    "path": ["dev", "test"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete User",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"id\": \"04cb996c-bbad-4e00-8a19-0872c5a25de1\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://qkugf08cwb.execute-api.us-east-1.amazonaws.com/dev/users",
+                    "protocol": "https",
+                    "host": [
+                        "qkugf08cwb",
+                        "execute-api",
+                        "us-east-1",
+                        "amazonaws",
+                        "com"
+                    ],
+                    "path": ["dev", "users"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Update User",
+            "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"id\": \"04cb996c-bbad-4e00-8a19-0872c5a25de1\",\n    \"firstName\": \"Conner\",\n    \"lastName\": \"Aiken\",\n    \"dob\": \"06/02/1993\",\n    \"email\": \"connerz@fittedtech.com\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://qkugf08cwb.execute-api.us-east-1.amazonaws.com/dev/users",
+                    "protocol": "https",
+                    "host": [
+                        "qkugf08cwb",
+                        "execute-api",
+                        "us-east-1",
+                        "amazonaws",
+                        "com"
+                    ],
+                    "path": ["dev", "users"]
+                }
+            },
+            "response": []
+        }
+    ]
+}
