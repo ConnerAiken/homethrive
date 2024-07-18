@@ -78,7 +78,9 @@ describe('Update user actions PUT->/users/', () => {
             {
                 update: jest.fn().mockReturnValue({
                     promise: () => {
-                        return {};
+                        throw {
+                            code: 'ConditionalCheckFailedException',
+                        };
                     },
                 }),
             },

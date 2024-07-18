@@ -19,8 +19,8 @@ export interface CrudRequestMap {
 export interface ResourceHandlerParams {
     (
         event: APIGatewayProxyEvent,
-        dynamoDbClient: DynamoDB.DocumentClient, // replace with the appropriate type for dynamoDbClient
-        dayjs: any, // replace with the appropriate type for dayjs
-        uuidv4: any // replace with the appropriate type for uuidv4
+        dynamoDbClient: DynamoDB.DocumentClient,
+        dayjs: any,
+        uuidv4: any
     ): Promise<APIGatewayProxyResult>;
 }
